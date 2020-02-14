@@ -97,3 +97,4 @@ ECU_FINGERPRINT = {
 def check_ecu_msgs(fingerprint, ecu):
   # return True if fingerprint contains messages normally sent by a given ecu
   return ECU_FINGERPRINT[ecu] in fingerprint
+  
