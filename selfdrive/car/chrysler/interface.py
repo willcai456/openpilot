@@ -14,7 +14,7 @@ ButtonType = car.CarState.ButtonEvent.Type
 # Logic in update() relies on these values being different.
 MIN_STEER_SPEED = 3.8  # m/s
 HIGH_MIN_2019 = 17.5  # m/s minimum for steering engage on 2019.
-LOW_MIN_2019 = 11.0  # m/s minimum after already engaged on 2019. 14.5=33mph 11.0=25mph 
+LOW_MIN_2019 = 14.5  # m/s minimum after already engaged on 2019. 14.5=33mph 11.0=25mph 
 
 class CarInterface(CarInterfaceBase):
   def __init__(self, CP, CarController):
