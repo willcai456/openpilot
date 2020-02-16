@@ -105,7 +105,7 @@ class CarState():
     self.seatbelt = (cp.vl["SEATBELT_STATUS"]['SEATBELT_DRIVER_UNLATCHED'] == 0)
 
     self.brake_pressed = cp.vl["BRAKE_2"]['BRAKE_PRESSED_2'] == 5 # human-only
-    self.pedal_gas = cp.vl["ACCEL_GAS_134"]['ACCEL_134']
+    self.pedal_gas = 0 # Modified to not to cancel the OP when gas padel is pressed.
     self.car_gas = self.pedal_gas
     self.esp_disabled = (cp.vl["TRACTION_BUTTON"]['TRACTION_OFF'] == 1)
 

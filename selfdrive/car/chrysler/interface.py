@@ -11,6 +11,11 @@ from selfdrive.car.interfaces import CarInterfaceBase
 GearShifter = car.CarState.GearShifter
 ButtonType = car.CarState.ButtonEvent.Type
 
+# Logic in update() relies on these values being different.
+MIN_STEER_SPEED = 3.8  # m/s
+HIGH_MIN_2019 = 17.5  # m/s minimum for steering engage on 2019.
+LOW_MIN_2019 = 11.0  # m/s minimum after already engaged on 2019. 14.5=33mph 11.0=25mph 
+
 class CarInterface(CarInterfaceBase):
   def __init__(self, CP, CarController):
     self.CP = CP
@@ -153,6 +158,12 @@ class CarInterface(CarInterfaceBase):
 
     # cruise state
     ret.cruiseState.enabled = self.CS.pcm_acc_status  # same as main_on
+    # Maintains steering down to 33mph when crusing down and when OP was operational
+    if self.CP.minSteerSpeed in (LOW_MIN_2019, HIGH_MIN_2019): 
+      if ret.cruiseState.enabled and self.CS.v_ego > HIGH_MIN_2019:
+        self.CP.minSteerSpeed = LOW_MIN_2019
+      if self.CS.v_ego < LOW_MIN_2019:
+        self.CP.minSteerSpeed = HIGH_MIN_2019
     ret.cruiseState.speed = self.CS.v_cruise_pcm * CV.KPH_TO_MS
     ret.cruiseState.available = self.CS.main_on
     ret.cruiseState.speedOffset = 0.
