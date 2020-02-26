@@ -57,6 +57,3 @@ panda_jungle
 htmlcov
 pandaextra
 
-tools/
-Pipfile
-Pipfile.lock
