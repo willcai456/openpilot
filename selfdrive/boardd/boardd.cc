@@ -750,8 +750,7 @@ void hexdump(unsigned char *d, int l) {
 #ifdef QCOM2
 void _pigeon_send(const char *dat, int len) {
   int err = write(pigeon_tty_fd, dat, len);
-  if(err < 0)
-    handle_tty_issue(err, __func__);
+  if(err < 0) { handle_tty_issue(err, __func__); }
 }
 
 void pigeon_set_power(int power) {
