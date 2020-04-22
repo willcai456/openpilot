@@ -10,8 +10,8 @@ V_CRUISE_ENABLE_MIN = 40
 
 
 class MPC_COST_LAT:
-  PATH = 0.5
-  STEER_RATE = 5.0
+  PATH = 0.001
+  STEER_RATE = 1.0
 
 
 class MPC_COST_LONG:
